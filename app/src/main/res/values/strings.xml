@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Inxtagram</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">nXCKT1F5ifjKy5iupOEds5Rw1DAc0Y4Fwkyrf7dk</string>
+    <string name="back4app_client_key">RaGZQ0rr6tc6UG7lmyKO9tZ6e9BvR0P3tAxBC5gl</string>
 </resources>
