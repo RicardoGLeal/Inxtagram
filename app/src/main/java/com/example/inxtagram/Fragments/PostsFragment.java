@@ -96,6 +96,10 @@ public class PostsFragment extends Fragment {
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
         //include the user of the post
         query.include(Post.KEY_USER);
+        //Limiting the number of posts getting back.
+        query.setLimit(20);
+        //the items created most recently will come first and the oldest ones will come last.
+        query.addDescendingOrder(Post.KEY_CREATED_AT);
         // Retrieve all the posts
         query.findInBackground(new FindCallback<Post>() {
             @Override
