@@ -24,6 +24,16 @@ import com.parse.ParseQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+
+///course is less specific
+//fine with local wifi networks
+
+//gps uses more battery
+
+//courses saatellite.
+//find is generally going to be a satellotite.
+//we use course to save battery and for privacy concerns.
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PostsFragment#newInstance} factory method to
