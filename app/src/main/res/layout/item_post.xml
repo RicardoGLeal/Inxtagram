@@ -12,19 +12,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        tools:text="Ricardo"></TextView>
+        tools:text="Ricardo">
+    </TextView>
 
     <ImageView
         android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
-        tools:srcCompat="@tools:sample/avatars"></ImageView>
+        tools:srcCompat="@tools:sample/avatars">
 
+    </ImageView>
+
+    <LinearLayout
+        android:id="@+id/actionsBar"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ufi_heart" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/btnReply"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ufi_comment"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnRetweet"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ufi_new_direct" />
+
+
+
+
+    </LinearLayout>
     <TextView
         android:id="@+id/tvDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        tools:text="Trying to look hipster"></TextView>
+        tools:text="Trying to look hipster">
+    </TextView>
+
 </LinearLayout>

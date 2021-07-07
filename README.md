@@ -15,7 +15,7 @@ The following **required** functionality is completed:
 - [ ] User can log out of his or her account
 - [X] User can take a photo, add a caption, and post it to "Instagram"
 - [X] User can view the last 20 posts submitted to "Instagram"
-- [ ] User can pull to refresh the last 20 posts submitted to "Instagram"
+- [X] User can pull to refresh the last 20 posts submitted to "Instagram"
 - [ ] User can tap a post to view post details, including timestamp and caption.
 - [X] User sees app icon in home screen
 
@@ -68,7 +68,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2021] [Ricardo Gonzalez Leal]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
