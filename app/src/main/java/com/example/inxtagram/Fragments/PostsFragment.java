@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.inxtagram.Post;
-import com.example.inxtagram.PostsAdapter;
+import com.example.inxtagram.Adapters.PostsAdapter;
 import com.example.inxtagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
