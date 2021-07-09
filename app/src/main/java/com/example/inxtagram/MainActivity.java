@@ -28,6 +28,7 @@ import com.example.inxtagram.Fragments.PostsFragment;
 import com.example.inxtagram.Fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
+import com.parse.LogOutCallback;
 import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseFile;
@@ -99,8 +100,14 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         if(item.getItemId()== R.id.logout_btn){
-            ParseUser.logOutInBackground();
-            finish();
+            ParseUser.logOutInBackground(new LogOutCallback() {
+                @Override
+                public void done(ParseException e) {
+                    Toast.makeText(MainActivity.this, "Log out successful!", Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+            });
+
         }
         return super.onOptionsItemSelected(item);
     }
