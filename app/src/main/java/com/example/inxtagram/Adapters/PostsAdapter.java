@@ -63,7 +63,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        private TextView tvUsername, tvDescription, tvLikesNumber;
+        private TextView tvUsername, tvDescription, tvLikesNumber, tvPostDate;
         private ImageView ivImage;
         private ImageView ivProfilePicture;
         private Button btnFavorite;
@@ -74,6 +74,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ivImage = itemView.findViewById(R.id.ivImage);
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvLikesNumber = itemView.findViewById(R.id.tvLikesNumber);
+            tvPostDate = itemView.findViewById(R.id.tvPostDate);
 
             ivProfilePicture = itemView.findViewById(R.id.ivProfileImage);
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
@@ -84,9 +85,15 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             //Bind the post data to the view elements
             tvDescription.setText(post.getDescription());
             tvUsername.setText(post.getUser().getUsername());
+            tvPostDate.setText(ActionsHelper.getRelativeTimeAgo(post.getCreatedAt().toString()));
             ParseFile image = post.getImage();
-            ParseFile profilePicture = post.getUser().getParseFile("profilePicture");
 
+            //condition to check if there is an image attached
+            if (image != null) {
+                Glide.with(context).load(image.getUrl()).into(ivImage);
+            }
+
+            ParseFile profilePicture = post.getUser().getParseFile("profilePicture");
             RequestOptions circleProp = new RequestOptions();
             circleProp = circleProp.transform(new CircleCrop());
 
@@ -95,11 +102,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                         .placeholder(R.drawable.profile_image_empty)
                         .apply(circleProp)
                         .into(ivProfilePicture);
-
-            //condition to check if there is an image attached
-            if (image != null) {
-                Glide.with(context).load(image.getUrl()).into(ivImage);
-            }
 
             ActionsHelper.getLikesCount(post, tvLikesNumber);
             ActionsHelper.getLiked(post, btnFavorite);
@@ -116,10 +118,9 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         public void onClick(View v) {
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
-                Toast.makeText(context, "asfd", Toast.LENGTH_SHORT).show();
                 AppCompatActivity activity = (AppCompatActivity) context;
                 Fragment fragment;
-                fragment = new PostDetailsFragment();
+                fragment = new PostDetailsFragment(posts.get(position));
                 ((AppCompatActivity) context).getSupportFragmentManager();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragment).commit();
             }

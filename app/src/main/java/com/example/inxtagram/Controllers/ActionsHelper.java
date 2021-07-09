@@ -1,6 +1,7 @@
 package com.example.inxtagram.Controllers;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +14,9 @@ import com.example.inxtagram.R;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 public class ActionsHelper {
     public static final String TAG = "ActionsHelper";
@@ -61,5 +65,22 @@ public class ActionsHelper {
 
     public static void getLikesCount(Post post, TextView tvLikesNumber) {
         tvLikesNumber.setText(String.valueOf(post.getLikesNumber()));
+    }
+
+    public static String getRelativeTimeAgo(String rawDate) {
+        String twitterFormat = "EEE MMM dd HH:mm:ss ZZZZZ yyyy";
+        SimpleDateFormat sf = new SimpleDateFormat(twitterFormat, Locale.ENGLISH);
+        sf.setLenient(true);
+
+        String relativeDate = "";
+        try {
+            long dateMillis = sf.parse(rawDate).getTime();
+            relativeDate = DateUtils.getRelativeTimeSpanString(dateMillis,
+                    System.currentTimeMillis(), DateUtils.SECOND_IN_MILLIS).toString();
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+
+        return relativeDate;
     }
 }

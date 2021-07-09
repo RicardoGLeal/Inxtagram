@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="8dp"
     tools:context=".Fragments.PostDetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/ivProfileImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            tools:srcCompat="@color/purple_700">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            tools:text="Ricardo">
+        </TextView>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="5dp"
+        android:scaleType="centerCrop"
+        tools:srcCompat="@tools:sample/avatars">
+    </ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvLikesNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:text="0"
+            tools:text="0">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="likes">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/actionsBar"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp">
+
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ufi_heart_icon" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+        <Button
+            android:id="@+id/btnReply"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/ufi_comment"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnRetweet"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/ufi_new_direct" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        tools:text="Trying to look hipster">
+    </TextView>
+    <TextView
+        android:id="@+id/tvPostDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        tools:text="8 hours ago">
+    </TextView>
+</LinearLayout>

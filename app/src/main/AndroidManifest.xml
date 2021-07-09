@@ -22,7 +22,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Inxtagram"
         android:usesCleartextTraffic="true">
-        <activity android:name=".PostDetailsActivity"></activity>
         <!-- make sure within the application tag, otherwise app will crash with XmlResourceParser errors -->
         <provider
             android:name="androidx.core.content.FileProvider"
