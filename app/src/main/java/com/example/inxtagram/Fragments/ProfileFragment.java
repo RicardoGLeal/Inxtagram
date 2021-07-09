@@ -5,21 +5,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.inxtagram.Adapters.PostsProfileAdapter;
+import com.example.inxtagram.MainActivity;
 import com.example.inxtagram.Post;
-import com.example.inxtagram.Adapters.PostsAdapter;
 import com.example.inxtagram.R;
 import com.parse.FindCallback;
+import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseFile;
 import com.parse.ParseQuery;
@@ -32,16 +38,15 @@ import java.util.List;
 Since the content displayed in the home fragment is almost the same as that displayed in the profile fragment,
 ProfileFragment inherits from PostsFragment, which is more efficient than repeating code.
  */
-public class ProfileFragment extends PostsFragment {
+public class ProfileFragment extends Fragment {
 
     public static final String TAG = "ProfileFragment";
     private RecyclerView rvPosts;
-    protected PostsAdapter adapter;
+    protected PostsProfileAdapter adapter;
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
     private ImageView ivProfile;
-    private ParseUser user;
-
+    private Button btnLogout;
     public ProfileFragment(){
     }
 
@@ -55,8 +60,9 @@ public class ProfileFragment extends PostsFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        btnLogout = view.findViewById(R.id.btnLogout);
         ivProfile = view.findViewById(R.id.ivProfileImage);
-        ParseUser user  = ParseUser.getCurrentUser();
         ParseFile profilePicture = ParseUser.getCurrentUser().getParseFile("profilePicture");
         RequestOptions circleProp = new RequestOptions();
         circleProp = circleProp.transform(new CircleCrop());
@@ -70,9 +76,22 @@ public class ProfileFragment extends PostsFragment {
         rvPosts = view.findViewById(R.id.rvPosts);
         allPosts = new ArrayList<>();
         swipeContainer = view.findViewById(R.id.swipeContainer);
-        /**
-         * OnClickListener implemented when the user pulls to refresh.
-         */
+
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParseUser.logOutInBackground(new LogOutCallback() {
+                    @Override
+                    public void done(ParseException e) {
+                        Toast.makeText(getContext(), "Log out successful!", Toast.LENGTH_SHORT).show();
+                        AppCompatActivity activity = (AppCompatActivity) getContext();
+                        activity.finish();
+                    }
+                });
+            }
+        });
+
+        //OnClickListener implemented when the user pulls to refresh.
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -89,7 +108,7 @@ public class ProfileFragment extends PostsFragment {
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
 
-        adapter = new PostsAdapter(getContext(), allPosts);
+        adapter = new PostsProfileAdapter(getContext(), allPosts);
 
         //Steps to use the recycler view:
         //0. create layout for one row in the list
@@ -98,12 +117,13 @@ public class ProfileFragment extends PostsFragment {
         //3. set the adapter on the recycler view
         rvPosts.setAdapter(adapter);
         //4. set the layout manager on the recycler view
-        rvPosts.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvPosts.setLayoutManager(new GridLayoutManager(getContext(),3));
         queryPosts();
     }
 
-
-    @Override
+    /**
+     * This function queries the posts.
+     */
     protected void queryPosts() {
         //Specify which class to query
         ParseQuery<Post> query = ParseQuery.getQuery(Post.class);
