@@ -34,4 +34,10 @@
         android:text="Submit">
     </Button>
 
+    <ProgressBar
+        android:id="@+id/pb"
+        android:layout_width="30dp"
+        android:layout_height="30dp">
+    </ProgressBar>
+
 </LinearLayout>

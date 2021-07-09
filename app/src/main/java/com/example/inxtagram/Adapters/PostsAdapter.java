@@ -132,7 +132,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
         private void goToProfile(Post post) {
             AppCompatActivity activity = (AppCompatActivity) context;
             Fragment fragment = new ProfileFragment(post.getUser());
-            ((AppCompatActivity) context).getSupportFragmentManager();
+            activity.getSupportFragmentManager();
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragment).commit();
         }
 

@@ -3,6 +3,7 @@ package com.example.inxtagram.Fragments;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.inxtagram.Post;
@@ -34,7 +36,7 @@ import static android.app.Activity.RESULT_OK;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link ComposeFragment#newInstance} factory method to
+ * Use the {@link ComposeFragment# newInstance} factory method to
  * create an instance of this fragment.
  */
 public class ComposeFragment extends Fragment {
@@ -42,42 +44,18 @@ public class ComposeFragment extends Fragment {
     public static final String TAG ="ComposeFragment";
     public static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 42;
     private EditText etDescription;
-    private Button btnCaptureImage;
+    private Button btnCaptureImage, btnSubmit;
     private ImageView ivPostImage;
-    private Button btnSubmit;
     private File photoFile;
+    private ProgressBar progressBar;
     public String photoFileName = "photo.jpg";
 
     public ComposeFragment() {
         // Required empty public constructor
     }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ComposeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ComposeFragment newInstance(String param1, String param2) {
-        ComposeFragment fragment = new ComposeFragment();
-        Bundle args = new Bundle();
-        //args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            //mParam1 = getArguments().getString(ARG_PARAM1);
-           // mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     // The onCreateView method is called when Fragment should create its View object hierarchy,
@@ -89,6 +67,8 @@ public class ComposeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_compose, container, false);
     }
 
+
+
     // This event is triggered soon after onCreateView().
     // Any view setup should occur here.  E.g., view lookups and attaching view listeners.
     @Override
@@ -98,10 +78,10 @@ public class ComposeFragment extends Fragment {
         btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
         ivPostImage = view.findViewById(R.id.ivPostImage);
         btnSubmit = view.findViewById(R.id.btnSubmit);
+        progressBar = view.findViewById(R.id.pb);
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
 
-        /**
-         * Listener for the Capture Image Button.
-         */
+        //Listener for the Capture Image Button.
         btnCaptureImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,6 +177,7 @@ public class ComposeFragment extends Fragment {
      * @param photoFile
      */
     private void savePost(String description, ParseUser currentUser, File photoFile) {
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         Post post = new Post();
         post.setDescription(description);
         post.setImage(new ParseFile(photoFile));
@@ -212,6 +193,7 @@ public class ComposeFragment extends Fragment {
                 etDescription.setText("");
                 //clear the image
                 ivPostImage.setImageResource(0);
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
             }
         });
     }
