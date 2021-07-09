@@ -17,6 +17,24 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:src="@drawable/nux_dayone_landing_logo"/>
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="right"
+            android:background="@drawable/ufi_new_direct"
+            android:layout_marginRight="5dp"
+            android:backgroundTint="@color/iconsColor">
+        </ImageView>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/instagram_new_post_outline_24"
+            android:backgroundTint="@color/iconsColor">
+        </ImageView>
+
     </androidx.appcompat.widget.Toolbar>
 
     <ImageView
@@ -30,10 +48,11 @@
     </ImageView>
 
     <LinearLayout
+        android:id="@+id/stadistics"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/ivProfileImage"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:layout_toEndOf="@+id/ivProfileImage"
         android:orientation="horizontal">
 
@@ -75,6 +94,16 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 </LinearLayout>
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stadistics"
+        android:layout_toEndOf="@id/ivProfileImage"
+        android:layout_marginRight="15dp"
+        android:text="LOGOUT">
+    </Button>
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
