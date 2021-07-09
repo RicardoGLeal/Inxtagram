@@ -88,15 +88,31 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 </LinearLayout>
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
+
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_below="@id/stadistics"
-        android:layout_toEndOf="@id/ivProfileImage"
-        android:layout_marginRight="15dp"
-        android:text="LOGOUT">
-    </Button>
+        android:layout_toEndOf="@id/ivProfileImage">
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/stadistics"
+            android:layout_marginRight="10dp"
+            android:text="LOGOUT">
+        </Button>
+        <Button
+            android:id="@+id/btnCaptureImage"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/btnLogout"
+            android:text="CHANGE">
+
+        </Button>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvUsername"

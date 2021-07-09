@@ -7,5 +7,6 @@
         android:id="@+id/logout_btn"
         android:icon="@drawable/ic_baseline_menu_24"
         android:title="Logout"
-        app:showAsAction="" />
+        android:visible="true"
+        app:showAsAction="always" />
 </menu>

@@ -168,8 +168,6 @@ public class ComposeFragment extends Fragment {
         }
     }
 
-
-
     /**
      * Save the post created into de database, implementing Parse and the model created.
      * @param description
