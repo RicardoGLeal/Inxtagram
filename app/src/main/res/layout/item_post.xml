@@ -48,7 +48,9 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
             android:text="0"
-            tools:text="0"></TextView>
+            tools:text="0">
+        </TextView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -99,5 +101,4 @@
         android:layout_marginBottom="8dp"
         tools:text="Trying to look hipster">
     </TextView>
-
 </LinearLayout>
