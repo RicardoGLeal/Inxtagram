@@ -5,6 +5,7 @@
     <color name="colorAccent">#ffffff</color>
     <color name="textFieldColor">#4daab8c2</color>
     <color name="iconsColor">#ffffff</color>
+    <color name="white">#FFFFFFFF</color>
 
     <color name="textColor">#ffffff</color>
     <color name="medium_green">#ff17bf63</color>
