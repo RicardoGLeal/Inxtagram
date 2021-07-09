@@ -60,35 +60,29 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
-
         <include
             android:id="@+id/counterPosts"
             layout="@layout/counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
-
         <include
             android:id="@+id/counterFollowers"
             layout="@layout/counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_weight="1" />
-
         <include
             android:id="@+id/counterFollowing"
             layout="@layout/counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -104,13 +98,23 @@
         android:text="LOGOUT">
     </Button>
 
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivProfileImage"
+        android:layout_alignStart="@id/ivProfileImage"
+        android:textSize="15dp"
+        tools:text="Louis Talkington">
+    </TextView>
+
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_below="@id/ivProfileImage"
+        android:layout_below="@id/tvUsername"
         android:paddingTop="5dp">
 
         <androidx.recyclerview.widget.RecyclerView

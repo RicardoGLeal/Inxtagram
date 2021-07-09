@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,13 +42,17 @@ ProfileFragment inherits from PostsFragment, which is more efficient than repeat
 public class ProfileFragment extends Fragment {
 
     public static final String TAG = "ProfileFragment";
+    private TextView tvUserName;
     private RecyclerView rvPosts;
     protected PostsProfileAdapter adapter;
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
     private ImageView ivProfile;
     private Button btnLogout;
-    public ProfileFragment(){
+    private ParseUser user;
+
+    public ProfileFragment(ParseUser user){
+        this.user = user;
     }
 
     @Override
@@ -61,9 +66,10 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        tvUserName = view.findViewById(R.id.tvUsername);
         btnLogout = view.findViewById(R.id.btnLogout);
         ivProfile = view.findViewById(R.id.ivProfileImage);
-        ParseFile profilePicture = ParseUser.getCurrentUser().getParseFile("profilePicture");
+        ParseFile profilePicture = user.getParseFile("profilePicture");
         RequestOptions circleProp = new RequestOptions();
         circleProp = circleProp.transform(new CircleCrop());
 
@@ -77,6 +83,7 @@ public class ProfileFragment extends Fragment {
         allPosts = new ArrayList<>();
         swipeContainer = view.findViewById(R.id.swipeContainer);
 
+        tvUserName.setText(user.getUsername());
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +137,7 @@ public class ProfileFragment extends Fragment {
         //include the user of the post
         query.include(Post.KEY_USER);
         //get only the queries of the user logged in.
-        query.whereEqualTo(Post.KEY_USER, ParseUser.getCurrentUser());
+        query.whereEqualTo(Post.KEY_USER, user);
         //Limiting the number of posts getting back.
         query.setLimit(20);
         //the items created most recently will come first and the oldest ones will come last.

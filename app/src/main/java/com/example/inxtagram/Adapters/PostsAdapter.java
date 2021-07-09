@@ -20,6 +20,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.inxtagram.Controllers.ActionsHelper;
 import com.example.inxtagram.Fragments.PostDetailsFragment;
+import com.example.inxtagram.Fragments.ProfileFragment;
 import com.example.inxtagram.Post;
 import com.example.inxtagram.R;
 import com.parse.ParseFile;
@@ -75,8 +76,8 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             tvDescription = itemView.findViewById(R.id.tvDescription);
             tvLikesNumber = itemView.findViewById(R.id.tvLikesNumber);
             tvPostDate = itemView.findViewById(R.id.tvPostDate);
-
             ivProfilePicture = itemView.findViewById(R.id.ivProfileImage);
+
             btnFavorite = itemView.findViewById(R.id.btnFavorite);
             itemView.setOnClickListener(this);
         }
@@ -112,6 +113,27 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
                     ActionsHelper.LikePost(post, btnFavorite, tvLikesNumber, context);
                 }
             });
+
+            tvUsername.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToProfile(post);
+                }
+            });
+
+            ivProfilePicture.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    goToProfile(post);
+                }
+            });
+        }
+
+        private void goToProfile(Post post) {
+            AppCompatActivity activity = (AppCompatActivity) context;
+            Fragment fragment = new ProfileFragment(post.getUser());
+            ((AppCompatActivity) context).getSupportFragmentManager();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragment).commit();
         }
 
         @Override
@@ -119,8 +141,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             int position = getAdapterPosition();
             if (position != RecyclerView.NO_POSITION) {
                 AppCompatActivity activity = (AppCompatActivity) context;
-                Fragment fragment;
-                fragment = new PostDetailsFragment(posts.get(position));
+                Fragment fragment = new PostDetailsFragment(posts.get(position));
                 ((AppCompatActivity) context).getSupportFragmentManager();
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragment).commit();
             }
