@@ -21,6 +21,7 @@ import com.example.inxtagram.Adapters.PostsAdapter;
 import com.example.inxtagram.R;
 import com.parse.FindCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
@@ -39,9 +40,11 @@ public class ProfileFragment extends PostsFragment {
     protected List<Post> allPosts;
     private SwipeRefreshLayout swipeContainer;
     private ImageView ivProfile;
-    public ProfileFragment() {
-        // Required empty public constructor
+    private ParseUser user;
+
+    public ProfileFragment(){
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -53,11 +56,14 @@ public class ProfileFragment extends PostsFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ivProfile = view.findViewById(R.id.ivProfileImage);
-
+        ParseUser user  = ParseUser.getCurrentUser();
+        ParseFile profilePicture = ParseUser.getCurrentUser().getParseFile("profilePicture");
         RequestOptions circleProp = new RequestOptions();
         circleProp = circleProp.transform(new CircleCrop());
+
         Glide.with(getContext())
-                .load("https://st.depositphotos.com/1779253/5140/v/600/depositphotos_51405259-stock-illustration-male-avatar-profile-picture-use.jpg")
+                .load(profilePicture!=null?profilePicture.getUrl(): R.drawable.profile_image_empty)
+                .placeholder(R.drawable.profile_image_empty)
                 .apply(circleProp)
                 .into(ivProfile);
 
