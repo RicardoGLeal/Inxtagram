@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -31,6 +33,7 @@ import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.inxtagram.Adapters.PostsProfileAdapter;
 import com.example.inxtagram.Controllers.ActionsHelper;
+import com.example.inxtagram.LoginActivity;
 import com.example.inxtagram.MainActivity;
 import com.example.inxtagram.Post;
 import com.example.inxtagram.R;
@@ -43,6 +46,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,6 +106,8 @@ public class ProfileFragment extends Fragment {
                     public void done(ParseException e) {
                         Toast.makeText(getContext(), "Log out successful!", Toast.LENGTH_SHORT).show();
                         AppCompatActivity activity = (AppCompatActivity) getContext();
+                        Intent intent = new Intent(getContext(), LoginActivity.class);
+                        startActivity(intent);
                         activity.finish();
                     }
                 });
@@ -244,4 +250,6 @@ public class ProfileFragment extends Fragment {
             }
         }
     }
+
+
 }
