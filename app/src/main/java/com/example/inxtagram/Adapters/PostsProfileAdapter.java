@@ -72,17 +72,16 @@ public class PostsProfileAdapter extends RecyclerView.Adapter<PostsProfileAdapte
         public void bind(Post post) {
             //Bind the post data to the view elements
             ParseFile image = post.getImage();
-
             //condition to check if there is an image attached
             if (image != null) {
                 Glide.with(context).load(image.getUrl()).into(ivImage);
             }
-
-            ParseFile profilePicture = post.getUser().getParseFile("profilePicture");
-            RequestOptions circleProp = new RequestOptions();
-            circleProp = circleProp.transform(new CircleCrop());
         }
 
+        /**
+         * OnClickListener of each post. It opens the PostDetailsFragment with the details of the post clicked.
+         * @param v
+         */
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();

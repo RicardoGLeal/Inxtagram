@@ -97,7 +97,6 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             ParseFile profilePicture = post.getUser().getParseFile("profilePicture");
             RequestOptions circleProp = new RequestOptions();
             circleProp = circleProp.transform(new CircleCrop());
-
             Glide.with(context)
                         .load(profilePicture!=null?profilePicture.getUrl(): R.drawable.profile_image_empty)
                         .placeholder(R.drawable.profile_image_empty)
@@ -129,6 +128,10 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             });
         }
 
+        /**
+         * Function that goes to the profile of the user clicked.
+         * @param post post opened
+         */
         private void goToProfile(Post post) {
             AppCompatActivity activity = (AppCompatActivity) context;
             Fragment fragment = new ProfileFragment(post.getUser());
@@ -136,6 +139,10 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.ViewHolder> 
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragment).commit();
         }
 
+        /**
+         * OnClickListener of each post. It opens the PostDetailsFragment with the details of the post clicked.
+         * @param v
+         */
         @Override
         public void onClick(View v) {
             int position = getAdapterPosition();
