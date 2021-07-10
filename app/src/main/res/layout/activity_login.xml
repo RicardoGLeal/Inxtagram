@@ -24,7 +24,7 @@
         android:background="@drawable/ic_shape_textfield"
         android:ems="10"
         android:layout_marginBottom="10dp"
-        android:text="Name" />
+        android:hint="Username" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -35,7 +35,7 @@
         android:contentDescription="asdfdsaf"
         android:ems="10"
         android:inputType="textPassword"
-        tools:text="sdafas" />
+        android:hint="password"/>
 
     <Button
         android:id="@+id/btnLogin"
