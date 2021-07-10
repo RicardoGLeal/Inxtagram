@@ -64,6 +64,9 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 ## Notes
 
 Describe any challenges encountered while building the app.
+-To see the details of the posts I wanted to make use of the fragments, however at first I did not know how to call the fragment from an adapter, so I asked a TA who helped me to obtain the Activity through the adapter, and with that I was able to call the fragment through the fragmentManager.
+-Sometimes when I was pressing the button to go back, the application would return me to the loginActivity, so what I did was override the onBack method making it only open the initial fragment.
+-I think the most valuable thing about this app was learning to use the Parse database, integrate the cell phone camera, and make use of fragments.
 
 ## License
 
