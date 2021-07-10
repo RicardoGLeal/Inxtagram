@@ -85,37 +85,11 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
 
+    /**
+     * Overrided the onBackPressed to always go to the default fragment.
+     */
     @Override
     public void onBackPressed() {
         bottomNavigationView.setSelectedItemId(R.id.action_home);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    /**
-     * This function is call when the user clicks on a item that is inside of the Menu.
-     * @param item The item pressed in the menu.
-     * @return
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if(item.getItemId()== R.id.logout_btn){
-            ParseUser.logOutInBackground(new LogOutCallback() {
-                @Override
-                public void done(ParseException e) {
-                    Toast.makeText(MainActivity.this, "Log out successful!", Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-            });
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
 }

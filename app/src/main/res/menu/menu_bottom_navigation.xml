@@ -9,7 +9,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_compose"
-        android:icon="@android:drawable/ic_menu_edit"
+        android:icon="@drawable/instagram_new_post_outline_24"
         android:title="Compose"
         app:showAsAction="always" />
     <item

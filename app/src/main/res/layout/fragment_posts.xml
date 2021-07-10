@@ -17,6 +17,32 @@
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:src="@drawable/nux_dayone_landing_logo"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:background="@drawable/ufi_comment"
+            android:layout_marginRight="12dp"
+            android:backgroundTint="@color/iconsColor">
+        </ImageView>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/ufi_heart_icon"
+            android:backgroundTint="@color/iconsColor">
+        </ImageView>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="12dp"
+            android:background="@drawable/instagram_new_post_outline_24"
+            android:backgroundTint="@color/iconsColor">
+        </ImageView>
+
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
