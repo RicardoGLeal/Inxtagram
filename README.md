@@ -2,7 +2,7 @@
 
 **Inxtagram** is a photo sharing app using Parse as its backend.
 
-Time spent: **12** hours spent in total
+Time spent: **15** hours spent in total
 
 ## User Stories
 
